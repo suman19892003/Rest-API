@@ -1,0 +1,9 @@
+URL : _api/web/lists/getbytitle('Request')/items(@{triggerOutputs()?['body/ID']})
+Headers:content-type:application/json;odata=verbose
+        IF-MATCH:*
+        X-HTTP-Method:MERGE
+Body:{    
+      "__metadata": { "type": "SP.Data.RequestListItem" },    
+      "ApprovalStatus": "Completed",
+      "Status": "Completed"
+     }
