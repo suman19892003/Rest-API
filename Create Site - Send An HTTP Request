@@ -1,0 +1,17 @@
+Site Address : Tenant Site URL(SiteColl/Subsite not required, This code will create new Site Collection in SP Online)
+Method: POST
+Uri: _api/SPSiteManager/create
+Headers:accept:application/json;odata.metadata=none
+Body:{
+  "request": {
+    "Title": "@{outputs('Get_item_:_From_request_list')?['body/Title']}",
+    "Url":"https://amicustechnologydev.sharepoint.com/sites/@{outputs('Compose_:_Trim_Space_from_title')}",
+    "Lcid": 1033,
+    "ShareByEmailEnabled":false,
+    "Classification":"Low Business Impact",
+    "Description":"@{outputs('Get_item_:_From_request_list')?['body/Description']}",
+    "WebTemplate":"STS#3",
+    "SiteDesignId":"00000000-0000-0000-0000-000000000000",
+    "Owner":"@{outputs('Get_item_:_From_request_list')?['body/PrimaryOwner/Email']}"
+  }
+}
