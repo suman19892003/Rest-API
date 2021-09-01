@@ -1,0 +1,37 @@
+Get Current user profile details along with any other users
+
+public getUserProperties(webUrl, context, userLogin) {
+  return new Promise<any[]>((resolve,reject)=>{
+  let apiUrl = webUrl + "/_api/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='" + encodeURIComponent('i:0#.f|membership|amitd@orgemail.com') +"'";
+  let httpClient: SPHttpClient = context.spHttpClient;  
+     httpClient.get(apiUrl, SPHttpClient.configurations.v1).then(response => {
+      debugger;
+       response.json().then(responseJson => {
+          debugger;
+          resolve(responseJson.UserProfileProperties);         
+            },(error:any[])=>{
+                console.log(error);
+                reject('Error Occured');
+            });
+        })
+    })
+}
+
+//Current Logged user profile details
+
+public getCurrentUserDetails(webUrl, context) {
+  return new Promise<any[]>((resolve,reject)=>{
+  let apiUrl = webUrl + "/_api/SP.UserProfiles.PeopleManager/GetMyProperties";
+  let httpClient: SPHttpClient = context.spHttpClient;  
+     httpClient.get(apiUrl, SPHttpClient.configurations.v1).then(response => {
+      debugger;
+       response.json().then(responseJson => {
+          debugger;
+          resolve(responseJson.UserProfileProperties);         
+            },(error:any[])=>{
+                console.log(error);
+                reject('Error Occured');
+            });
+        })
+    })
+}
